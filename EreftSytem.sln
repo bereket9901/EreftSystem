@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EreftSytem", "EreftSytem\EreftSytem.csproj", "{A7098323-C63B-4F76-83E8-5C5BC2C6E753}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EreftSystem", "EreftSytem\EreftSystem.csproj", "{A7098323-C63B-4F76-83E8-5C5BC2C6E753}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{338FB6D3-CD53-4432-B02D-919D254C95AC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", "{338FB6D3-CD53-4432-B02D-919D254C95AC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{D141A4E0-5056-40CC-AD8C-5D8EE5DA3017}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{D141A4E0-5056-40CC-AD8C-5D8EE5DA3017}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

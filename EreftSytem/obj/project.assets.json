@@ -5067,9 +5067,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\bekym\\Documents\\Ereft\\EreftSytem\\EreftSytem\\EreftSytem.csproj",
-      "projectName": "EreftSytem",
-      "projectPath": "C:\\Users\\bekym\\Documents\\Ereft\\EreftSytem\\EreftSytem\\EreftSytem.csproj",
+      "projectUniqueName": "C:\\Users\\bekym\\Documents\\Ereft\\EreftSytem\\EreftSytem\\EreftSystem.csproj",
+      "projectName": "EreftSystem",
+      "projectPath": "C:\\Users\\bekym\\Documents\\Ereft\\EreftSytem\\EreftSytem\\EreftSystem.csproj",
       "packagesPath": "C:\\Users\\bekym\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\bekym\\Documents\\Ereft\\EreftSytem\\EreftSytem\\obj\\",
       "projectStyle": "PackageReference",

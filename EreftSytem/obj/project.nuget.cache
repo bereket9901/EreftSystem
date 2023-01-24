@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "BblfBvN506fU4dwODjz3tf826qqKmJswjzqx9iCzFZkuMkC+BKSDLgDV5R+0EsxlYoJ1aAcYJDNUrTGPn6IwZQ==",
+  "dgSpecHash": "vmgovWN/5qtHgo31hWV7qq7ElxGk9stLUrUmH9Q8ESTo8ueYrclCMUcSdwGFupUeUbz1/zxmoApnEeR+OOWT6A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\bekym\\Documents\\Ereft\\EreftSytem\\EreftSytem\\EreftSytem.csproj",
+  "projectFilePath": "C:\\Users\\bekym\\Documents\\Ereft\\EreftSytem\\EreftSytem\\EreftSystem.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\bekym\\.nuget\\packages\\microsoft.entityframeworkcore\\2.1.0-preview1-final\\microsoft.entityframeworkcore.2.1.0-preview1-final.nupkg.sha512",
     "C:\\Users\\bekym\\.nuget\\packages\\microsoft.entityframeworkcore.attributes\\2.1.0-preview1-final\\microsoft.entityframeworkcore.attributes.2.1.0-preview1-final.nupkg.sha512",
