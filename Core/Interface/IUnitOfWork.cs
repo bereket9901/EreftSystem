@@ -1,4 +1,7 @@
 ﻿using Core.Entities;
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Core.Interface.IRepository
 {
@@ -13,7 +16,6 @@ namespace Core.Interface.IRepository
         Task<int> SaveChangesAsync();
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
         Task<int> CommitAsync();
-
 
     }
 }

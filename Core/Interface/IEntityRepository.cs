@@ -1,5 +1,9 @@
 ﻿using Core.Entities;
+using System;
+using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
+
 namespace Core.Interface.IRepository
 {
     public interface IEntityRepository<TEntity> where TEntity : BaseEntity

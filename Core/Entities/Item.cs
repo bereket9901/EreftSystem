@@ -12,7 +12,7 @@ namespace Core.Entities
 
         [ForeignKey("Category")]
         public int? CategoryId { get; set; } = null;
-        public virtual Catagory Catagory { get; set; }
+        public virtual Category Catagory { get; set; }
 
         public int UnitPrice { get; set; }
 

@@ -1,4 +1,5 @@
 ﻿using Core.Entities;
+using DocumentFormat.OpenXml.Bibliography;
 using DocumentFormat.OpenXml.Drawing.Diagrams;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -23,9 +24,13 @@ namespace Infrastructure
 
         options.UseNpgsql(Configuration.GetConnectionString("WebApiDatabase"));
     }
-    public DbSet<Category> Category { get; set; }
 
+    public DbSet<Core.Entities.Category> Category { get; set; }
+    public DbSet<Group> Group { get; set; }
 
+    public DbSet<MenuItem> MenuItem { get; set; }
+
+   
     private DbTransaction _transaction;
 
     public void BeginTransaction()

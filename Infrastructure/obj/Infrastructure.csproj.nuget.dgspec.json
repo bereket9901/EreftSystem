@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\bekym\\Documents\\Ereft\\EreftSytem\\Infrastructure\\Infrastructure.csproj": {}
+    "D:\\Projects\\Ereft\\EreftSystem\\Infrastructure\\Infrastructure.csproj": {}
   },
   "projects": {
-    "C:\\Users\\bekym\\Documents\\Ereft\\EreftSytem\\Core\\Core.csproj": {
+    "D:\\Projects\\Ereft\\EreftSystem\\Core\\Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\bekym\\Documents\\Ereft\\EreftSytem\\Core\\Core.csproj",
+        "projectUniqueName": "D:\\Projects\\Ereft\\EreftSystem\\Core\\Core.csproj",
         "projectName": "Core",
-        "projectPath": "C:\\Users\\bekym\\Documents\\Ereft\\EreftSytem\\Core\\Core.csproj",
-        "packagesPath": "C:\\Users\\bekym\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\bekym\\Documents\\Ereft\\EreftSytem\\Core\\obj\\",
+        "projectPath": "D:\\Projects\\Ereft\\EreftSystem\\Core\\Core.csproj",
+        "packagesPath": "C:\\Users\\amuye\\.nuget\\packages\\",
+        "outputPath": "D:\\Projects\\Ereft\\EreftSystem\\Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\bekym\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\amuye\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -39,13 +39,20 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.2, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -54,21 +61,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.308\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\bekym\\Documents\\Ereft\\EreftSytem\\Infrastructure\\Infrastructure.csproj": {
+    "D:\\Projects\\Ereft\\EreftSystem\\Infrastructure\\Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\bekym\\Documents\\Ereft\\EreftSytem\\Infrastructure\\Infrastructure.csproj",
+        "projectUniqueName": "D:\\Projects\\Ereft\\EreftSystem\\Infrastructure\\Infrastructure.csproj",
         "projectName": "Infrastructure",
-        "projectPath": "C:\\Users\\bekym\\Documents\\Ereft\\EreftSytem\\Infrastructure\\Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\bekym\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\bekym\\Documents\\Ereft\\EreftSytem\\Infrastructure\\obj\\",
+        "projectPath": "D:\\Projects\\Ereft\\EreftSystem\\Infrastructure\\Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\amuye\\.nuget\\packages\\",
+        "outputPath": "D:\\Projects\\Ereft\\EreftSystem\\Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\bekym\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\amuye\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -82,8 +89,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\bekym\\Documents\\Ereft\\EreftSytem\\Core\\Core.csproj": {
-                "projectPath": "C:\\Users\\bekym\\Documents\\Ereft\\EreftSytem\\Core\\Core.csproj"
+              "D:\\Projects\\Ereft\\EreftSystem\\Core\\Core.csproj": {
+                "projectPath": "D:\\Projects\\Ereft\\EreftSystem\\Core\\Core.csproj"
               }
             }
           }
@@ -129,7 +136,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -138,7 +146,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.308\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     }

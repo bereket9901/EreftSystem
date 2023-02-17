@@ -9,12 +9,9 @@ namespace Core.Entities
 
         public float UnitPrice { get; set; }
 
-        [ForeignKey("Catagory")]
-        public int? CatagoryId { get; set; } = null;
-        public virtual Catagory Catagory { get; set; }
+        [ForeignKey("Group")]
+        public int GroupId { get; set; }
+        public virtual Group Group { get; set; }
         
-
-
-
     } 
 }

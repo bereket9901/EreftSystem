@@ -11,13 +11,7 @@ namespace Core.Entities
 
         [ForeignKey("OrderStatus")]
         public int? OrderStatusId { get; set; } = null;
-        public virtual OrderStatus OrderStatus { get; set; }
-       
-
+        public virtual OrderStatus OrderStatus { get; set; }     
         public int TotalPrice { get; set; }
-
-
-
-
     }
 }
