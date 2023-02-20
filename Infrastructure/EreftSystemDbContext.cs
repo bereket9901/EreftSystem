@@ -27,11 +27,15 @@ namespace Infrastructure
 
     public DbSet<Core.Entities.Category> Category { get; set; }
     public DbSet<Group> Group { get; set; }
-
     public DbSet<MenuItem> MenuItem { get; set; }
+    public DbSet<Role> Role { get; set; }
+    public DbSet<User> User { get; set; }
+    public DbSet<OrderStatus> OrderStatus { get; set; }
+    public DbSet<Order> Order { get; set; }
+    public DbSet<OrderMenuItem> OrderMenuItem { get; set; }
 
-   
-    private DbTransaction _transaction;
+
+     private DbTransaction _transaction;
 
     public void BeginTransaction()
     {

@@ -2,8 +2,8 @@
 
 namespace Core.Entities
 {
-	public class OrderStatus
-	{
+	public class OrderStatus : BaseEntity
+    {
         public string Name { get; set; }
     }
 }
