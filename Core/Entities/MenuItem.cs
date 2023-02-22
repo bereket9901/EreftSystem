@@ -9,6 +9,8 @@ namespace Core.Entities
 
         public float UnitPrice { get; set; }
 
+        public bool ChiefMenu { get; set; } = true;
+
         [ForeignKey("Group")]
         public int GroupId { get; set; }
         public virtual Group Group { get; set; }

@@ -1,4 +1,5 @@
 using Core.DTOs;
+using Core.DTOs.Order;
 using Core.Interface.Facade;
 using Core.ViewModel;
 using Microsoft.AspNetCore.Mvc;
@@ -20,10 +21,18 @@ namespace EreftSytem.Controllers
         }
 
         [HttpPost(Name = "createOrder")]
-        [ProducesResponseType(typeof(List<CategoryDTO>), 200)]
+        [ProducesResponseType(typeof(bool), 200)]
         public async Task<IActionResult> CreateOrder([FromBody] CreateOrderViewModel model)
         {
             var result  = await _orderService.CreateOrder(model);
+            return Ok(result);
+        }
+
+        [HttpGet(Name = "getKitchenOrders")]
+        [ProducesResponseType(typeof(List<KitchenOrderDTO>), 200)]
+        public async Task<IActionResult> GetKitchenOrders()
+        {
+            var result = await _orderService.GetKithenOrder();
             return Ok(result);
         }
     }

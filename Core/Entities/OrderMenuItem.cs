@@ -14,7 +14,7 @@ namespace Core.Entities
         public int MenuItemId { get; set; }
         public virtual MenuItem MenuItem { get; set; }
 
-        public double Amount { get; set; }
+        public int Amount { get; set; }
 
         public float Price { get; set; }
     }

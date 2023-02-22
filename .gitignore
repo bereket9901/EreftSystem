@@ -1,52 +1,23 @@
-# Prerequisites
-*.d
+################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
 
-# Object files
-*.o
-*.ko
-*.obj
-*.elf
+/EreftSytem/obj
+/EreftSytem/bin
+/EreftSytem/.vs/*
+/EreftSytem/.mfractor/*
+/EreftSytem/EreftSytem.csproj.user
+/EreftSytem/.DS_Store
 
-# Linker output
-*.ilk
-*.map
-*.exp
+/Core/obj
+/Core/bin
+/Core/.vs/*
 
-# Precompiled Headers
-*.gch
-*.pch
+/Infrastructure/obj
+/Infrastructure/bin
+/Infrastructure/.vs/*
+/Infrastructure/.DS_Store
 
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
-
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
-
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
-
-# Debug files
-*.dSYM/
-*.su
-*.idb
-*.pdb
-
-# Kernel Module Compile Results
-*.mod*
-*.cmd
-.tmp_versions/
-modules.order
-Module.symvers
-Mkfile.old
-dkms.conf
+.vs/*
+.DS_Store
+.mfractor/*
