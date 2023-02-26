@@ -10,5 +10,6 @@ namespace Core.Interface.Facade
     {
         Task<bool> CreateOrder(CreateOrderViewModel order);
         Task<IList<KitchenOrderDTO>> GetKithenOrder();
+        Task<bool> UpdateKitchenOrderDelivered(int orderId);
     }
 }

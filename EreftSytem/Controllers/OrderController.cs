@@ -1,7 +1,10 @@
 using Core.DTOs;
 using Core.DTOs.Order;
+using Core.Entities;
 using Core.Interface.Facade;
+using Core.Service;
 using Core.ViewModel;
+using Microsoft.AspNet.SignalR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EreftSytem.Controllers
@@ -25,6 +28,7 @@ namespace EreftSytem.Controllers
         public async Task<IActionResult> CreateOrder([FromBody] CreateOrderViewModel model)
         {
             var result  = await _orderService.CreateOrder(model);
+
             return Ok(result);
         }
 
@@ -35,5 +39,14 @@ namespace EreftSytem.Controllers
             var result = await _orderService.GetKithenOrder();
             return Ok(result);
         }
+
+        [HttpPut(Name = "updateKitchenOrderDelivered")]
+        [ProducesResponseType(typeof(bool), 200)]
+        public async Task<IActionResult> UpdateKitchenOrderDelivered([FromBody] int orderId)
+        {
+            var result = await _orderService.UpdateKitchenOrderDelivered(orderId);
+            return Ok(result);
+        }
+
     }
 }

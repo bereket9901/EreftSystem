@@ -4,6 +4,7 @@ using Core.Service;
 using Infrastructure;
 using Infrastructure.Repository.Abstract;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -21,8 +22,10 @@ builder.Services.AddScoped(typeof(IUnitOfWork), u =>
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IOrderService, OrderService>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddCors(options => options.AddPolicy("CorsPolicy", p => p.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod()));
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddSignalR();
 
 var app = builder.Build();
 
@@ -38,5 +41,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapHub<Hubs>("hubs/notifications");
 
 app.Run();

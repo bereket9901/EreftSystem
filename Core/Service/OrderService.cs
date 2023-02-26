@@ -9,6 +9,7 @@ using Core.DTOs.Order;
 using Core.Interface;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.SignalR;
 
 namespace Core.Service
 {
@@ -16,9 +17,13 @@ namespace Core.Service
     {
         private readonly IUnitOfWork _iuow;
         private readonly IRepository<Order> _orderRepo;
-        public OrderService(IUnitOfWork iuow) { 
+        private readonly IHubContext<Hubs> _hubContext;
+
+        public OrderService(IUnitOfWork iuow, IHubContext<Hubs> hubContext)
+        {
             _iuow = iuow;
             _orderRepo = _iuow.Repository<Order>();
+            _hubContext = hubContext;
         }
 
         public async Task<bool> CreateOrder(CreateOrderViewModel order)
@@ -35,6 +40,11 @@ namespace Core.Service
             await _orderRepo.InsertAsync(orderDb);
 
             await _iuow.SaveChangesAsync();
+
+            await _hubContext.Clients.All.SendAsync("ReceiveMessage", new NotifyMessage
+            {
+                Message = "order created successfully."
+            });
 
             return true;
         }
@@ -55,6 +65,21 @@ namespace Core.Service
             }).ToList();
 
             return result;
+        }
+
+        public async Task<bool> UpdateKitchenOrderDelivered(int orderId)
+        {
+            var order = await _orderRepo.GetAsync(orderId);
+            if (order == null || order.OrderStatusId != (int)OrderStatusEnum.Created)
+            { 
+                return false; 
+            }
+            order.OrderStatusId = (int)OrderStatusEnum.Delivered;
+
+            _orderRepo.Update(order);
+
+            await _iuow.SaveChangesAsync();
+            return true;
         }
     }
 }
