@@ -17,7 +17,9 @@ namespace Infrastructure.Migrations
 
                                    INSERT INTO public.""ItemCategory""(""Name"", ""CreateDateTime"", ""ModifiedDateTime"")
                                                                         VALUES('የሼፍ ዕቃ', CURRENT_DATE, null),
+                                                                              ('ስቶር', CURRENT_DATE, null),
                                                                               ('የባሬስታ ዕቃ', CURRENT_DATE, null);
+
                                 INSERT INTO public.""Item""(""Name"", ""MeasuringUnitId"", ""UnitPrice"", ""CreateDateTime"", ""ModifiedDateTime"")
                                                                          VALUES('ስጋ-ለጥብስ', 1, 480, CURRENT_DATE, null),
                                                                                 ('ስጋ-ለጥብስ ፍርፍር', 1, 480, CURRENT_DATE, null),        
