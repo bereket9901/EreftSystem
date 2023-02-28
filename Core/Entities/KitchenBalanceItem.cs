@@ -10,7 +10,9 @@ namespace Core.Entities
 
         public double AmountLeft { get; set; }
 
-        public int ItemId { get; set; } 
+        [ForeignKey("Item")]
+        public int ItemId { get; set; }    
+        public virtual Item Item { get; set; } 
 
     }
 }

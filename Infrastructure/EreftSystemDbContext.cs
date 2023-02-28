@@ -33,9 +33,17 @@ namespace Infrastructure
     public DbSet<OrderStatus> OrderStatus { get; set; }
     public DbSet<Order> Order { get; set; }
     public DbSet<OrderMenuItem> OrderMenuItem { get; set; }
+    public DbSet<ItemCategory> ItemCategory { get; set; }
+    public DbSet<Item> Item { get; set; }     
+    public DbSet<MeasuringUnit> MeasuringUnit { get; set; }
+    public DbSet<Inventory> Inventory { get; set; }
+ 
 
 
-     private DbTransaction _transaction;
+        //public DbSet<ItemGroup> ItemGroup { get; set; }
+
+
+        private DbTransaction _transaction;
 
     public void BeginTransaction()
     {

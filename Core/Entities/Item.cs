@@ -7,13 +7,11 @@ namespace Core.Entities
     {
         public string Name { get; set; }
 
-        public int MeasuringUnitId { get; set; }
+        [ForeignKey("MeasuringUnit")]
+        public int MeasuringUnitId { get; set; } 
+        public virtual MeasuringUnit MeasuringUnit { get; set; }
 
-        [ForeignKey("Category")]
-        public int? CategoryId { get; set; } = null;
-        public virtual Category Catagory { get; set; }
-
-        public int UnitPrice { get; set; }
+        public float UnitPrice { get; set; }
 
     }
 }
