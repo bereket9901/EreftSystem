@@ -23,7 +23,7 @@ namespace EreftSytem.Controllers
             _orderService = orderService;
         }
 
-        [HttpPost(Name = "createOrder")]
+        [HttpPost("createOrder")]
         [ProducesResponseType(typeof(bool), 200)]
         public async Task<IActionResult> CreateOrder([FromBody] CreateOrderViewModel model)
         {
@@ -32,7 +32,7 @@ namespace EreftSytem.Controllers
             return Ok(result);
         }
 
-        [HttpGet(Name = "getKitchenOrders")]
+        [HttpGet("getKitchenOrders")]
         [ProducesResponseType(typeof(List<KitchenOrderDTO>), 200)]
         public async Task<IActionResult> GetKitchenOrders()
         {
@@ -40,7 +40,7 @@ namespace EreftSytem.Controllers
             return Ok(result);
         }
 
-        [HttpPut(Name = "updateKitchenOrderDelivered")]
+        [HttpPut("updateKitchenOrderDelivered")]
         [ProducesResponseType(typeof(bool), 200)]
         public async Task<IActionResult> UpdateKitchenOrderDelivered([FromBody] int orderId)
         {

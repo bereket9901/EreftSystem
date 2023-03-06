@@ -42,5 +42,19 @@ namespace Core.Service
 
             return result;
         }
+
+        public async Task<IList<ItemCategoryDTO>> GetInventoryCategories()
+        {
+            var itemCategoryRepo = _iuow.Repository<ItemCategory>();
+
+            var itemCategories = await itemCategoryRepo.All.ToListAsync();
+
+            var result = itemCategories.Select(c => new ItemCategoryDTO { 
+                Id= c.Id,
+                Name=c.Name
+            }).ToList();
+            return result;
+        }
+
     }
 }

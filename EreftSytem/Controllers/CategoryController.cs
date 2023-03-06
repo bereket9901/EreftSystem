@@ -18,11 +18,19 @@ namespace EreftSytem.Controllers
             _categoryService = categoryService;
         }
 
-        [HttpGet(Name = "GetCategories")]
+        [HttpGet("GetCategories")]
         [ProducesResponseType(typeof(List<CategoryDTO>), 200)]
         public async Task<IActionResult> GetCategories()
         {
             var result  = await _categoryService.GetCategories();
+            return Ok(result);
+        }
+           
+       [HttpGet("GetInventoryCategories")]
+       [ProducesResponseType(typeof(List<ItemCategoryDTO>), 200)]
+       public async Task<IActionResult> GetInventoryCategories()
+        {
+           var result = await _categoryService.GetInventoryCategories();
             return Ok(result);
         }
     }

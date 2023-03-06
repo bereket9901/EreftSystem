@@ -56,7 +56,7 @@ namespace Core.Service
             var result = orders.Select(o => new KitchenOrderDTO
             {
                 Id = o.Id,
-                Items = o.OrderMenuItems.Select(m => new KithenOrderItem
+                Items = o.OrderMenuItems.Select(m => new KithenOrderItem 
                 {
                     Name = m.MenuItem.Name,
                     Amount = m.Amount,

@@ -7,6 +7,7 @@ namespace Core.Interface.Facade
 {
     public interface ICategoryService
     {
-        Task<IList<CategoryDTO>> GetCategories();
+        Task<IList<CategoryDTO>> GetCategories(); 
+        Task<IList<ItemCategoryDTO>> GetInventoryCategories(); 
     }
 }
