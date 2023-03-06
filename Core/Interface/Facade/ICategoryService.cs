@@ -9,5 +9,6 @@ namespace Core.Interface.Facade
     {
         Task<IList<CategoryDTO>> GetCategories(); 
         Task<IList<ItemCategoryDTO>> GetInventoryCategories(); 
+        Task<IList<ItemDTO>> GetItem();
     }
 }

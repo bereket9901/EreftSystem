@@ -56,5 +56,20 @@ namespace Core.Service
             return result;
         }
 
+        public async Task<IList<ItemDTO>> GetItem()
+        {
+            var itemRepo = _iuow.Repository<Item>();
+
+            var item = await itemRepo.All.Include(i=>i.MeasuringUnit).ToListAsync();
+
+            var result = item.Select(i=> new ItemDTO
+            {
+                Id = i.Id,
+                Name = i.Name,
+                MeasuringUnit=i.MeasuringUnit.Name
+       
+            }).ToList();
+            return result;
+        }
     }
 }

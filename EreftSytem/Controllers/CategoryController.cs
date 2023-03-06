@@ -33,5 +33,14 @@ namespace EreftSytem.Controllers
            var result = await _categoryService.GetInventoryCategories();
             return Ok(result);
         }
+
+       [HttpGet("GetItem")]
+       [ProducesResponseType(typeof(List<ItemCategoryDTO>), 200)]
+       public async Task<IActionResult> GetItem()
+        {
+            var result = await _categoryService.GetItem();
+            return Ok(result);
+        }
+
     }
 }
