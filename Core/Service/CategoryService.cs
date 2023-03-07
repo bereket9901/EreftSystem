@@ -64,7 +64,7 @@ namespace Core.Service
 
             var result = item.Select(i=> new ItemWithCategoryDTO
             {
-                Id = i.Id,
+                Id = i.Item.Id,
                 Name = i.Item.Name,
                 MeasuringUnit=i.Item.MeasuringUnit.Name
        
