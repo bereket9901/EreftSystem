@@ -2,7 +2,7 @@
 
 namespace Core.DTOs
 {
-    public class ItemDTO
+    public class ItemWithCategoryDTO
     {
         public int Id { get; set; }
         public string Name { get; set; }

@@ -34,11 +34,11 @@ namespace EreftSytem.Controllers
             return Ok(result);
         }
 
-       [HttpGet("GetItem")]
+       [HttpGet("GetItemWithCategory")]
        [ProducesResponseType(typeof(List<ItemCategoryDTO>), 200)]
-       public async Task<IActionResult> GetItem()
+       public async Task<IActionResult> GetItemWithCategory(int itemCategoryId)
         {
-            var result = await _categoryService.GetItem();
+            var result = await _categoryService.GetItemWithCategory(itemCategoryId);
             return Ok(result);
         }
 

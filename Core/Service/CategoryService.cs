@@ -56,17 +56,17 @@ namespace Core.Service
             return result;
         }
 
-        public async Task<IList<ItemDTO>> GetItem()
+        public async Task<IList<ItemWithCategoryDTO>> GetItemWithCategory(int itemCategoryId)
         {
-            var itemRepo = _iuow.Repository<Item>();
+            var itemRepo = _iuow.Repository<ItemWithCategory>();
 
-            var item = await itemRepo.All.Include(i=>i.MeasuringUnit).ToListAsync();
+            var item = await itemRepo.All.Where(i=>i.ItemCategoryId== itemCategoryId).Include(i=>i.Item).ThenInclude(i=>i.MeasuringUnit).ToListAsync();
 
-            var result = item.Select(i=> new ItemDTO
+            var result = item.Select(i=> new ItemWithCategoryDTO
             {
                 Id = i.Id,
-                Name = i.Name,
-                MeasuringUnit=i.MeasuringUnit.Name
+                Name = i.Item.Name,
+                MeasuringUnit=i.Item.MeasuringUnit.Name
        
             }).ToList();
             return result;
