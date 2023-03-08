@@ -1,6 +1,7 @@
 using Core.DTOs;
 using Core.DTOs.Inventory;
 using Core.Interface.Facade;
+using Core.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EreftSytem.Controllers
@@ -24,6 +25,14 @@ namespace EreftSytem.Controllers
         public async Task<IActionResult> GetInventory(int categoryId)
         {
             var result  = await _inventoryService.GetInventory(categoryId);
+            return Ok(result);
+        }
+
+        [HttpPut("updateInventory")]
+        [ProducesResponseType(typeof(bool), 200)]
+        public async Task<IActionResult> UpdateInventory(UpdateInventoryViewModel updateInventoryViewModel)
+        {
+            var result = await _inventoryService.UpdateInventory(updateInventoryViewModel);
             return Ok(result);
         }
     }
