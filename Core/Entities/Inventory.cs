@@ -11,8 +11,6 @@ namespace Core.Entities
         public int ItemId { get; set; } 
         public virtual Item Item { get; set; }
 
-        //public virtual List<Item> Item { get; set; }
-
         [ForeignKey("ItemCategory")]
         public int ItemCategoryId { get; set; }
         public virtual ItemCategory ItemCatagory { get; set; }

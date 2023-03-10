@@ -10,6 +10,7 @@ using Core.Interface;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.SignalR;
+using Core.DTOs;
 
 namespace Core.Service
 {

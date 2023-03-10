@@ -15,7 +15,7 @@ namespace Core.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        public DateTime? CreateDateTime { get; set; } = null;
+        public DateTime CreateDateTime { get; set; } 
 
         public DateTime? ModifiedDateTime { get; set; } = null;
 

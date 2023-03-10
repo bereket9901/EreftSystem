@@ -38,11 +38,9 @@ namespace Infrastructure
     public DbSet<MeasuringUnit> MeasuringUnit { get; set; }
     public DbSet<Inventory> Inventory { get; set; }
     public DbSet<ItemWithCategory> ItemWithCategory { get; set; }
-        
-
-
-        //public DbSet<ItemGroup> ItemGroup { get; set; }
-
+    public DbSet<Request> Request { get; set; }
+    public DbSet<RequestItem> RequestItem { get; set; }
+    public DbSet<RequestStatus> RequestStatus { get; set; }
 
         private DbTransaction _transaction;
 

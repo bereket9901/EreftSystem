@@ -22,6 +22,7 @@ builder.Services.AddScoped(typeof(IUnitOfWork), u =>
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<IInventoryService, InventoryService>();
+builder.Services.AddScoped<IRequestService, RequestService>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddCors(options => options.AddPolicy("CorsPolicy", p => p.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod()));
