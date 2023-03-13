@@ -1,6 +1,9 @@
 using Core.DTOs;
+using Core.Enums;
 using Core.Interface.Facade;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace EreftSytem.Controllers
 {
@@ -18,6 +21,7 @@ namespace EreftSytem.Controllers
             _categoryService = categoryService;
         }
 
+        [Authorize(Roles = UserRoles.Cashier)]
         [HttpGet("GetCategories")]
         [ProducesResponseType(typeof(List<CategoryDTO>), 200)]
         public async Task<IActionResult> GetCategories()
@@ -25,15 +29,22 @@ namespace EreftSytem.Controllers
             var result  = await _categoryService.GetCategories();
             return Ok(result);
         }
-           
+       
+       [Authorize(Roles = UserRoles.Chief)]
+       [Authorize(Roles = UserRoles.Barista)]
+       [Authorize(Roles = UserRoles.StoreManager)]
        [HttpGet("GetInventoryCategories")]
        [ProducesResponseType(typeof(List<ItemCategoryDTO>), 200)]
        public async Task<IActionResult> GetInventoryCategories()
         {
-           var result = await _categoryService.GetInventoryCategories();
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+            var result = await _categoryService.GetInventoryCategories();
             return Ok(result);
         }
 
+       [Authorize(Roles = UserRoles.Chief)]
+       [Authorize(Roles = UserRoles.Barista)]
+       [Authorize(Roles = UserRoles.StoreManager)]
        [HttpGet("GetItemWithCategory")]
        [ProducesResponseType(typeof(List<ItemCategoryDTO>), 200)]
        public async Task<IActionResult> GetItemWithCategory(int itemCategoryId)

@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Core.Entities
 {
     [Table("Role")]
-    public class Role : BaseEntity
+    public class Role : IdentityRole<int>
     {
-        public string Name { get; set; }
+        
     }
 }

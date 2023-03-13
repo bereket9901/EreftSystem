@@ -1,11 +1,14 @@
-using Core.DTOs;
 using Core.DTOs.Inventory;
+using Core.Enums;
 using Core.Interface.Facade;
-using Core.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EreftSytem.Controllers
 {
+    [Authorize(Roles = UserRoles.Chief)]
+    [Authorize(Roles = UserRoles.Barista)]
+    [Authorize(Roles = UserRoles.StoreManager)]
     [ApiController]
     [Route("[controller]")]
     public class InventoryController : ControllerBase
@@ -28,12 +31,5 @@ namespace EreftSytem.Controllers
             return Ok(result);
         }
 
-        [HttpPut("updateInventory")]
-        [ProducesResponseType(typeof(bool), 200)]
-        public async Task<IActionResult> UpdateInventory(UpdateInventoryViewModel updateInventoryViewModel)
-        {
-            var result = await _inventoryService.UpdateInventory(updateInventoryViewModel);
-            return Ok(result);
-        }
     }
 }

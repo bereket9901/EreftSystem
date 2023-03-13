@@ -1,10 +1,15 @@
 using Core.DTOs.Order;
+using Core.Enums;
 using Core.Interface.Facade;
 using Core.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EreftSytem.Controllers
 {
+    [Authorize(Roles = UserRoles.Chief)]
+    [Authorize(Roles = UserRoles.Barista)]
+    [Authorize(Roles = UserRoles.StoreManager)]
     [ApiController]
     [Route("[controller]")]
     public class RequestController : ControllerBase
@@ -18,6 +23,8 @@ namespace EreftSytem.Controllers
             _logger = logger;
             _requestService = requestService;
         }
+
+        
         [HttpGet("getRequest")]
         [ProducesResponseType(typeof(bool), 200)]
         public async Task<IActionResult> GetRequest(int categoryId)

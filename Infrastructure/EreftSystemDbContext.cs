@@ -1,6 +1,7 @@
 ﻿using Core.Entities;
 using DocumentFormat.OpenXml.Bibliography;
 using DocumentFormat.OpenXml.Drawing.Diagrams;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System.Data;
@@ -8,12 +9,12 @@ using System.Data.Common;
 
 namespace Infrastructure
 {
-    public class EreftSystemDbContext : DbContext, IEntitiesContext
+    public class EreftSystemDbContext : IdentityDbContext<User, Role, int>, IEntitiesContext
     {
         protected readonly IConfiguration Configuration;
 
-    public EreftSystemDbContext(IConfiguration configuration)
-    {
+    public EreftSystemDbContext(IConfiguration configuration, DbContextOptions<EreftSystemDbContext> options) : base(options)
+        {
         Configuration = configuration;
     }
 
