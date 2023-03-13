@@ -7,9 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EreftSytem.Controllers
 {
-    [Authorize(Roles = UserRoles.Chief)]
-    [Authorize(Roles = UserRoles.Barista)]
-    [Authorize(Roles = UserRoles.StoreManager)]
+    [Authorize(Roles = $"{UserRoles.Chief},{UserRoles.Barista},{UserRoles.StoreManager}")]
     [ApiController]
     [Route("[controller]")]
     public class RequestController : ControllerBase

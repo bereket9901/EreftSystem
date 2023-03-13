@@ -1,9 +1,6 @@
-using Core.DTOs;
 using Core.DTOs.Order;
-using Core.Entities;
 using Core.Enums;
 using Core.Interface.Facade;
-using Core.Service;
 using Core.ViewModel;
 using Microsoft.AspNet.SignalR;
 using Microsoft.AspNetCore.Mvc;
@@ -34,8 +31,7 @@ namespace EreftSytem.Controllers
             return Ok(result);
         }
 
-        [Authorize(Roles = UserRoles.Chief)]
-        [Authorize(Roles = UserRoles.Barista)]
+        [Authorize(Roles = $"{UserRoles.Chief},{UserRoles.Barista}")]
         [HttpGet("getKitchenOrders")]
         [ProducesResponseType(typeof(List<KitchenOrderDTO>), 200)]
         public async Task<IActionResult> GetKitchenOrders()
@@ -44,8 +40,7 @@ namespace EreftSytem.Controllers
             return Ok(result);
         }
 
-        [Authorize(Roles = UserRoles.Chief)]
-        [Authorize(Roles = UserRoles.Barista)]
+        [Authorize(Roles = $"{UserRoles.Chief},{UserRoles.Barista}")]
         [HttpPut("updateKitchenOrderDelivered")]
         [ProducesResponseType(typeof(bool), 200)]
         public async Task<IActionResult> UpdateKitchenOrderDelivered([FromBody] int orderId)
