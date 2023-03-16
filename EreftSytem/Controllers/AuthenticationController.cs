@@ -56,7 +56,8 @@ namespace EreftSystem.Controllers
                 {
                     token = new JwtSecurityTokenHandler().WriteToken(token),
                     Roles = userRoles.ToList(),
-                    expiration = token.ValidTo
+                    expiration = token.ValidTo,
+                    userId = user.Id
                 });
             }
             return Unauthorized();

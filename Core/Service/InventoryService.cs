@@ -49,17 +49,17 @@ namespace Core.Service
             {
                 if (updateinventoryViewModel.CategoryId == (int)ItemCategoryEnum.Chief)
                 {
-                    await addRemoveInventoryItem(updateinventoryViewModel.Items, (int)ItemCategoryEnum.Store, false);
-                    await addRemoveInventoryItem(updateinventoryViewModel.Items, (int)ItemCategoryEnum.Chief, true);
+                    await AddRemoveInventoryItem(updateinventoryViewModel.Items, (int)ItemCategoryEnum.Store, false);
+                    await AddRemoveInventoryItem(updateinventoryViewModel.Items, (int)ItemCategoryEnum.Chief, true);
                 }
                 else if (updateinventoryViewModel.CategoryId == (int)ItemCategoryEnum.Barista)
                 {
-                    await addRemoveInventoryItem(updateinventoryViewModel.Items, (int)ItemCategoryEnum.Store, false);
-                    await addRemoveInventoryItem(updateinventoryViewModel.Items, (int)ItemCategoryEnum.Barista, true);
+                    await AddRemoveInventoryItem(updateinventoryViewModel.Items, (int)ItemCategoryEnum.Store, false);
+                    await AddRemoveInventoryItem(updateinventoryViewModel.Items, (int)ItemCategoryEnum.Barista, true);
                 }
                 else if (updateinventoryViewModel.CategoryId == (int)ItemCategoryEnum.Store)
                 {
-                    await addRemoveInventoryItem(updateinventoryViewModel.Items, (int)ItemCategoryEnum.Store, true);
+                    await AddRemoveInventoryItem(updateinventoryViewModel.Items, (int)ItemCategoryEnum.Store, true);
                 }
 
                 await _iuow.SaveChangesAsync();
@@ -72,7 +72,48 @@ namespace Core.Service
             return true;
         }
 
-        private async Task<bool> addRemoveInventoryItem(List<ItemViewModel> items, int categoryId, bool add)
+        public async Task<bool> SetInventoryState(UpdateInventoryViewModel updateinventoryViewModel)
+        {
+
+            try
+            {
+                var inventoryItems = await _inventoryRepo.All.Where(inv => inv.ItemCategoryId == updateinventoryViewModel.CategoryId).ToListAsync();
+
+                foreach (var item in updateinventoryViewModel.Items)
+                {
+                    var inventoryItem = inventoryItems.FirstOrDefault(inv => inv.ItemId == item.ItemId);
+
+                    if(item.Amount < 0){
+                        throw new Exception();
+                    }
+
+                    if (inventoryItem == null)
+                    {
+                        inventoryItem = new Inventory
+                        {
+                            Amount = item.Amount,
+                            ItemId = item.ItemId,
+                            ItemCategoryId = updateinventoryViewModel.CategoryId
+                        };
+                    }
+
+                    inventoryItem.Amount = item.Amount;
+
+                   await _inventoryRepo.InserOrUpdateAsync(inventoryItem);
+                }
+
+                await _iuow.SaveChangesAsync();
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+
+            return true;
+        }
+
+        private async Task<bool> AddRemoveInventoryItem(List<ItemViewModel> items, int categoryId, bool add)
         {
             var inventoryItems = await _inventoryRepo.All.Where(inv => inv.ItemCategoryId == categoryId).ToListAsync();
 

@@ -10,5 +10,7 @@ namespace Core.Interface.Facade
         Task<IList<InventoryDTO>> GetInventory(int categoryId);
 
         Task<bool> UpdateInventory(UpdateInventoryViewModel updateinventoryViewModel);
+
+        Task<bool> SetInventoryState(UpdateInventoryViewModel updateinventoryViewModel);
     }
 }

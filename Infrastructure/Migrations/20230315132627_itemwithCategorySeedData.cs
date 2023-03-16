@@ -113,16 +113,16 @@ namespace Infrastructure.Migrations
                                                                                                (51, 2, CURRENT_DATE, null),
                                                                                                (52, 2, CURRENT_DATE, null),
                                                                                                (53, 2, CURRENT_DATE, null),
-                                                                                               (44, 1, CURRENT_DATE, null),
-                                                                                               (45, 1, CURRENT_DATE, null),
-                                                                                               (46, 1, CURRENT_DATE, null),
-                                                                                               (47, 1, CURRENT_DATE, null),
-                                                                                               (48, 1, CURRENT_DATE, null),
-                                                                                               (49, 1, CURRENT_DATE, null),
-                                                                                               (50, 1, CURRENT_DATE, null),
-                                                                                               (51, 1, CURRENT_DATE, null),
-                                                                                               (52, 1, CURRENT_DATE, null),
-                                                                                               (53, 1, CURRENT_DATE, null);
+                                                                                               (44, 3, CURRENT_DATE, null),
+                                                                                               (45, 3, CURRENT_DATE, null),
+                                                                                               (46, 3, CURRENT_DATE, null),
+                                                                                               (47, 3, CURRENT_DATE, null),
+                                                                                               (48, 3, CURRENT_DATE, null),
+                                                                                               (49, 3, CURRENT_DATE, null),
+                                                                                               (50, 3, CURRENT_DATE, null),
+                                                                                               (51, 3, CURRENT_DATE, null),
+                                                                                               (52, 3, CURRENT_DATE, null),
+                                                                                               (53, 3, CURRENT_DATE, null);
             ");
         }
 

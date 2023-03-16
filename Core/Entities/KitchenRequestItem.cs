@@ -8,15 +8,6 @@ namespace Core.Entities
         public int KitchenRequestId { get; set; } 
         public virtual KitchenRequest KitchenRequest { get; set; }
 
-        /*  [ForeignKey("Item")]
-          public int ItemId { get; set; }
-          public virtual Item Item { get; set; }
-
-          [ForeignKey("ItemCategory")]
-          public int ItemCategoryId { get; set; }
-          public virtual ItemCategory ItemCatagory { get; set; }*/
-
-
         [ForeignKey("ItemWithCategory")]
         public int ItemWithCategoryId { get; set; }
         public virtual ItemWithCategory ItemWithCategory { get; set; }

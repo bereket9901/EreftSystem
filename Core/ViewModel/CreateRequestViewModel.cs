@@ -13,6 +13,8 @@ namespace Core.ViewModel
 
         public int CategoryId { get; set; }
 
+        public bool IsRefill { get; set; }
+
         public IList<RequestItemViewModel> RequestItems { get; set; }
 
     }

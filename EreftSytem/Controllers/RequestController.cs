@@ -25,9 +25,9 @@ namespace EreftSytem.Controllers
         
         [HttpGet("getRequest")]
         [ProducesResponseType(typeof(bool), 200)]
-        public async Task<IActionResult> GetRequest(int categoryId)
+        public async Task<IActionResult> GetRequest(int categoryId, bool isRefill)
         {
-            var result = await _requestService.GetRequest(categoryId);
+            var result = await _requestService.GetRequest(categoryId, isRefill);
 
             return Ok(result);
         }

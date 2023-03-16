@@ -31,6 +31,7 @@ namespace Core.Service
             var requestDb = new Request
             {
                 CreatedBy = request.CreatedBy,
+                IsRefill = request.IsRefill,
                 CategoryId = request.CategoryId,
                 RequestStatusId = (int)RequestStatusEnum.Created,
                 RequestItems = request.RequestItems.Select(ri=> new RequestItem { ItemId=ri.ItemId, Amount=ri.Amount}).ToList(),
@@ -43,9 +44,9 @@ namespace Core.Service
             return true;
         }
 
-        public async Task<IList<RequestDTO>> GetRequest(int categoryId)
+        public async Task<IList<RequestDTO>> GetRequest(int categoryId , bool isRefill)
         {
-            var requests = await _requestRepo.All.Where(r => r.CategoryId == categoryId).Include(r => r.RequestStatus).Include(r => r.User).Include(r => r.RequestItems).ThenInclude(ri => ri.Item).ToListAsync();
+            var requests = await _requestRepo.All.Where(r => r.CategoryId == categoryId && r.IsRefill == isRefill).Include(r => r.RequestStatus).Include(r => r.User).Include(r => r.RequestItems).ThenInclude(ri => ri.Item).ThenInclude(i => i.MeasuringUnit).ToListAsync();
 
             var result = requests.Select(r => new RequestDTO
             {
@@ -53,7 +54,7 @@ namespace Core.Service
                 CreatedBy =$"{r.User.FirstName} {r.User.LastName}",
                 Status = r.RequestStatus.Name,
                 dateTime=r.CreateDateTime,
-                Items =r.RequestItems.Select(i => new RequestItems {Name = i.Item.Name, Amount = i.Amount}).ToList()
+                Items =r.RequestItems.Select(i => new RequestItems {Name = i.Item.Name, Amount = i.Amount, MeasuringUnit = i.Item.MeasuringUnit.Name}).ToList()
                 
             }).OrderByDescending(r=>r.dateTime).ToList();
 
@@ -64,12 +65,31 @@ namespace Core.Service
         {
             var request = await _requestRepo.All.Include(r => r.RequestItems).Where(r => r.Id == updateRequestViewModel.RequestId).FirstOrDefaultAsync();
 
+            if (request.IsRefill)
+            {
+                return await RefillInventory(request, updateRequestViewModel);
+            }
+            else
+            {
+                return await UpdateInventoryState(request, updateRequestViewModel);
+            }
+        }
+
+        private async Task<bool> RefillInventory(Request request, UpdateRequestViewModel updateRequestViewModel)
+        {
+           
             if (request == null)
             {
                 return false;
             }
+            var existingRequest = await _requestRepo.All.Where(r => r.IsRefill == false && r.RequestStatusId == (int)RequestStatusEnum.Created).FirstOrDefaultAsync();
+            
+            if (existingRequest != null && updateRequestViewModel.RequestStatusId != (int)RequestStatusEnum.Rejected)
+            {
+                return false;
+            }
 
-            if(request.RequestStatusId != (int)RequestStatusEnum.Created || updateRequestViewModel.RequestStatusId == (int)RequestStatusEnum.Created)
+            if (request.RequestStatusId != (int)RequestStatusEnum.Created || updateRequestViewModel.RequestStatusId == (int)RequestStatusEnum.Created)
             {
                 return false;
             }
@@ -92,7 +112,50 @@ namespace Core.Service
 
                 var result = await _inventoryService.UpdateInventory(updateInventoryViewModel);
 
-                if (!result) {
+                if (!result)
+                {
+                    return false;
+                }
+            }
+
+            await _iuow.SaveChangesAsync();
+
+            return true;
+        }
+
+        private async Task<bool> UpdateInventoryState(Request request, UpdateRequestViewModel updateRequestViewModel)
+        {
+
+            if (request == null)
+            {
+                return false;
+            }
+
+            if (request.RequestStatusId != (int)RequestStatusEnum.Created || updateRequestViewModel.RequestStatusId == (int)RequestStatusEnum.Created)
+            {
+                return false;
+            }
+
+            request.RequestStatusId = updateRequestViewModel.RequestStatusId;
+
+            _requestRepo.Update(request);
+
+            if (updateRequestViewModel.RequestStatusId == (int)RequestStatusEnum.Approved)
+            {
+                var updateInventoryViewModel = new UpdateInventoryViewModel
+                {
+                    CategoryId = request.CategoryId,
+                    Items = request.RequestItems.Select(i => new ItemViewModel
+                    {
+                        ItemId = i.ItemId,
+                        Amount = i.Amount
+                    }).ToList()
+                };
+
+                var result = await _inventoryService.SetInventoryState(updateInventoryViewModel);
+
+                if (!result)
+                {
                     return false;
                 }
             }

@@ -16,6 +16,8 @@ namespace Core.Entities
 
         [ForeignKey("Category")]
         public int CategoryId { get; set; }
+        
+        public bool IsRefill { get; set; }
 
         public virtual ItemCategory Category { get; set; }
 

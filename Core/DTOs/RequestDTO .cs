@@ -15,7 +15,9 @@ namespace Core.DTOs
     public class RequestItems
     {
         public string Name { get; set; }
-        public double Amount { get; set; }
-       
+        public float Amount { get; set; }
+        public string MeasuringUnit { get; set; }
+        
+
     }
 }
