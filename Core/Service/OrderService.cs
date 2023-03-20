@@ -60,6 +60,7 @@ namespace Core.Service
                 {
                     Name = m.MenuItem.Name,
                     Amount = m.Amount,
+                    
                     IsChiefOrder = m.MenuItem.ChiefMenu
                 }).ToList()
             }).ToList();
@@ -67,19 +68,49 @@ namespace Core.Service
             return result;
         }
 
-        public async Task<bool> UpdateKitchenOrderDelivered(int orderId)
+        public async Task<bool> UpdateKitchenOrderStatus(UpdateOrderViewModel model)
         {
-            var order = await _orderRepo.GetAsync(orderId);
+            var order = await _orderRepo.GetAsync(model.OrderId);
             if (order == null || order.OrderStatusId != (int)OrderStatusEnum.Created)
             { 
                 return false; 
             }
-            order.OrderStatusId = (int)OrderStatusEnum.Delivered;
-
+            if (model.OrderStatusId == (int)OrderStatusEnum.Delivered)
+            {
+                order.OrderStatusId = (int)OrderStatusEnum.Delivered;
+            }
+             if (model.OrderStatusId == (int)OrderStatusEnum.Canceled)
+            {
+                order.OrderStatusId = (int)OrderStatusEnum.Canceled;
+            }
             _orderRepo.Update(order);
 
             await _iuow.SaveChangesAsync();
             return true;
         }
+
+        public async Task<IList<KitchenOrderDeliveredDTO>> GetAllKitchenOrder()
+        {
+
+            var orders = await _orderRepo.All.Include(o => o.OrderStatus).Include(r => r.User).Include(o => o.OrderMenuItems).ThenInclude(o=>o.MenuItem).ToListAsync();
+
+            var result = orders.Select(o => new KitchenOrderDeliveredDTO
+            {
+                Id = o.Id,
+                Status=o.OrderStatus.Name,
+                dateTime = o.CreateDateTime,
+                CreatedBy = $"{o.User.FirstName} {o.User.LastName}",
+                Items = o.OrderMenuItems.Select(m => new KithenOrderDeliveredItem
+                {
+                    Name = m.MenuItem.Name,
+                    Amount = m.Amount,
+                    
+                }).ToList()
+            }).OrderByDescending(r => r.dateTime).ToList();
+
+            return result;
+        }
+
+
     }
 }

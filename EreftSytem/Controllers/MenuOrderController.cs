@@ -43,13 +43,22 @@ namespace EreftSytem.Controllers
         }
 
         [Authorize(Roles = $"{UserRoles.Chief},{UserRoles.Barista}")]
-        [HttpPut("updateKitchenOrderDelivered")]
+        [HttpPut("updateKitchenOrderStatus")]
         [ProducesResponseType(typeof(bool), 200)]
-        public async Task<IActionResult> UpdateKitchenOrderDelivered([FromBody] int orderId)
+        public async Task<IActionResult> UpdateKitchenOrderStatus([FromBody] UpdateOrderViewModel model)
         {
-            var result = await _orderService.UpdateKitchenOrderDelivered(orderId);
+            var result = await _orderService.UpdateKitchenOrderStatus(model);
             return Ok(result);
         }
+        
+        [HttpGet("GetAllKitchenOrder")]
+        [ProducesResponseType(typeof(List<KitchenOrderDTO>), 200)]
+        public async Task<IActionResult> GetAllKitchenOrder()
+        {
+            var result = await _orderService.GetAllKitchenOrder();
+            return Ok(result);
+        }
+
 
     }
 }
