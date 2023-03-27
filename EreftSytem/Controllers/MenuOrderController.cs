@@ -23,15 +23,15 @@ namespace EreftSytem.Controllers
             _orderService = orderService;
         }
 
-        [Authorize(Roles = $"{UserRoles.Chief},{UserRoles.Barista}")]
+        [AllowAnonymous]
         [HttpGet("getKitchenOrders")]
         [ProducesResponseType(typeof(List<KitchenOrderDTO>), 200)]
-        public async Task<IActionResult> GetKitchenOrders()
+        public async Task<IActionResult> GetKitchenOrders(bool kitchen)
         {
-            var result = await _orderService.GetKithenOrder();
+            var result = await _orderService.GetKithenOrder(kitchen);
             return Ok(result);
         }
-
+        
         [Authorize(Roles = UserRoles.Cashier)]
         [HttpPost("createOrder")]
         [ProducesResponseType(typeof(bool), 200)]
@@ -41,7 +41,15 @@ namespace EreftSytem.Controllers
 
             return Ok(result);
         }
+        [Authorize(Roles = UserRoles.Cashier)]
+        [HttpPost("createDailySales")]
+        [ProducesResponseType(typeof(bool), 200)]
+        public async Task<IActionResult> CreateDailySales([FromBody] CreateDailySalesViewModel model)
+        {
+            var result = await _orderService.CreateDailySales(model);
 
+            return Ok(result);
+        }
         [Authorize(Roles = $"{UserRoles.Chief},{UserRoles.Barista}")]
         [HttpPut("updateKitchenOrderStatus")]
         [ProducesResponseType(typeof(bool), 200)]
@@ -51,6 +59,7 @@ namespace EreftSytem.Controllers
             return Ok(result);
         }
         
+        [Authorize(Roles = UserRoles.Cashier)]
         [HttpGet("GetAllKitchenOrder")]
         [ProducesResponseType(typeof(List<KitchenOrderDTO>), 200)]
         public async Task<IActionResult> GetAllKitchenOrder()
@@ -59,6 +68,12 @@ namespace EreftSytem.Controllers
             return Ok(result);
         }
 
-
+        [HttpGet("GetDeliveredKitchenOrder")]
+        [ProducesResponseType(typeof(List<KitchenOrderDTO>), 200)]
+        public async Task<IActionResult> GetDeliveredKitchenOrder()
+        {
+            var result = await _orderService.GetDeliveredKitchenOrder();
+            return Ok(result);
+        }
     }
 }

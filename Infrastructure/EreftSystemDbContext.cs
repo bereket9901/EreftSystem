@@ -1,6 +1,4 @@
 ﻿using Core.Entities;
-using DocumentFormat.OpenXml.Bibliography;
-using DocumentFormat.OpenXml.Drawing.Diagrams;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -40,8 +38,9 @@ namespace Infrastructure
     public DbSet<Inventory> Inventory { get; set; }
     public DbSet<ItemWithCategory> ItemWithCategory { get; set; }
     public DbSet<Request> Request { get; set; }
-    public DbSet<RequestItem> RequestItem { get; set; }
+    public DbSet<RequestItem> RequestItem { get; set; }      
     public DbSet<RequestStatus> RequestStatus { get; set; }
+    public DbSet<DailySales> DailySales { get; set; }
 
         private DbTransaction _transaction;
 

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Core.Entities
@@ -15,7 +13,12 @@ namespace Core.Entities
 
         [ForeignKey("OrderStatus")]
         public int OrderStatusId { get; set; }
-        public virtual OrderStatus OrderStatus { get; set; }     
+        public virtual OrderStatus OrderStatus { get; set; }
+
+        public bool ChiefOrderStatus { get; set; }
+
+        public bool BaristaOrderStatus { get; set; }
+
         public float TotalPrice { get; set; }
 
         public virtual IList<OrderMenuItem> OrderMenuItems { get; set;}
