@@ -91,25 +91,25 @@ namespace Core.Service
 
             var orders = await _orderRepo.All.Include(o => o.OrderMenuItems).ThenInclude(m => m.MenuItem).Where(o => o.OrderStatusId == (int)OrderStatusEnum.Created &&  o.Id==model.OrderId).ToListAsync();
 
-            foreach (var o in orders)
-            {
-
-                if (!(o.OrderMenuItems.Count(o => o.MenuItem.ChiefMenu == true) > 0))
-                {
-                    model.ChiefOrderStatus = true;
-                }
-                if (!(o.OrderMenuItems.Count(o => o.MenuItem.ChiefMenu == false) > 0))
-                {
-                    model.BaristaOrderStatus = true;
-                }
-            }
-
             if (order == null || order.OrderStatusId != (int)OrderStatusEnum.Created)
             {
                 return "false";
             }
             if (model.OrderStatusId == (int)OrderStatusEnum.Delivered)
             {
+                foreach (var o in orders)
+                {
+
+                    if (!(o.OrderMenuItems.Count(o => o.MenuItem.ChiefMenu == true) > 0))
+                    {
+                        model.ChiefOrderStatus = true;
+                    }
+                    if (!(o.OrderMenuItems.Count(o => o.MenuItem.ChiefMenu == false) > 0))
+                    {
+                        model.BaristaOrderStatus = true;
+                    }
+                }
+
                 if (order.BaristaOrderStatus == true) {
                     order.ChiefOrderStatus = model.ChiefOrderStatus;
                 }
@@ -139,7 +139,7 @@ namespace Core.Service
 
             }
 
-            if(model.OrderStatusId == (int)OrderStatusEnum.Canceled && order.CreateDateTime.AddMinutes(5) >= DateTime.UtcNow )
+            if(model.OrderStatusId == (int)OrderStatusEnum.Canceled && order.CreateDateTime.AddMinutes(5) >= DateTime.UtcNow && order.ChiefOrderStatus==false && order.BaristaOrderStatus==false)
             {
                 order.BaristaOrderStatus = false;
 
@@ -158,7 +158,11 @@ namespace Core.Service
             {
                 return "can not cancel this order it took you more than 5 minute!";
             }
-
+             
+            if (order.BaristaOrderStatus == true || order.ChiefOrderStatus == true)
+            {
+                return "can not cancel this order it is in progress!";
+            }
             return "false";
 
         }
